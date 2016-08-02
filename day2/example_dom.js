@@ -4,7 +4,9 @@ function start() {
 		var userChoice;
 		var complete = false;
 		do {
-			var choice = prompt("Choose (R)ock, (P)aper or (S)cissors [e(X)it].").toUpperCase();
+			//var choice = prompt("Choose (R)ock, (P)aper or (S)cissors [e(X)it].").toUpperCase();
+			// Use DOM to get Input Value
+			var choice = document.getElementById("choice").value.toUpperCase();
 			console.log("choice=" + choice);
 			switch(choice) {
 				case "R":
@@ -69,6 +71,21 @@ function getDisplay(value) {
 	else {
 		return(choiceArr[n]);
 	}
+}
+
+function domPrompt(msg) {
+		// create a div statement
+		// set content of div element to msg
+		var div = document.createElement("div");
+		div.innerHTML = "<p>" + msg + "</p>";
+		document.body.appendChild(div);	
+}
+
+function domAlert(msg) {
+		var div = document.createElement("div");
+		div.innerHTML = "<p>" + msg + "</p>";
+		div.className = "alert_class";
+		document.body.appendChild(div);	
 }
 
 function updateResults(resultsStr) {

@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Rock, paper, scissors</title>
+<script src="example_dom.js"></script>
+<style>
+button {
+	font-size: 25px;
+}
+.alert_class {
+	color: red
+}
+</style>
+<head>
+<body>
+<h1>Rock Paper, Scissors</h1>
+Choose (R)ock, (P)aper or (S)cissors [e(X)it]: <input id="choice" type="TEXT"/>
+<button type="button" onclick="start()">Start</button>
+<div id="results"></div>
+<script>
+domPrompt("testing new element");
+domAlert("This is an error");
+
+var promptInput = document.getElementById("choice");
+promptInput.oninput = debugPrompt();
+
+function debugPrompt() {
+	console.log("text value=" + promptInput.value);
+}
+
+</script>
+</body>
+</html>
