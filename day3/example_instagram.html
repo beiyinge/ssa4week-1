@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="example_instagram.js"></script>
+</head>
+<body>
+
+<h1 align="center">Instagram Demo.</h1>
+<p>Choose User Name: 
+<select id="userName">
+	<option value="Alice">Alice</option>
+	<option value="Bob">Bob</option>
+	<option value="Carol">Carol</option>
+	<option value="David">David</option>
+</select>
+Filter Description: <input id="filterText" type="text" onkeyup="handleFilter()"/>
+<button type="button"
+onclick="loadImages()">Load Images
+</button>
+<div id="imageList"></div>
+</body>
+</html>
