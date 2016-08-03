@@ -32,6 +32,10 @@ function loadImages() {
 	xhttp.onreadystatechange = function(){
 		loadImageHandler(xhttp);
 	};
+	// Reset filter text on resubmit.
+	var filterElem = document.getElementById("filterText");
+	filterElem.value = "";
+	
 	console.log("url = " + "http://localhost:8080/" + userName);
 	xhttp.open("GET", "http://localhost:8080/" + userName, true);
 	xhttp.send();
