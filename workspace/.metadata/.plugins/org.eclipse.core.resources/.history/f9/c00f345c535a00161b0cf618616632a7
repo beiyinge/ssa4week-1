@@ -1,0 +1,16 @@
+package com.ironyard.pgf.stack;
+
+public class HelloWorld {
+
+	public HelloWorld() {
+		System.out.println("called empty constructor");
+	}
+	
+	public HelloWorld(String msg) {
+		System.out.println("called constructor with string");
+	}
+
+	public static void main(String[] args) {
+		MyChild child = new MyChild();
+	}
+}
