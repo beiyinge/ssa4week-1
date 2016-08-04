@@ -2,4 +2,32 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.util.EmptyStackException"/>
 <fullyQualifiedTypeName name="com.ironyard.pgf.stack.MyStack"/>
+<fullyQualifiedTypeName name="javax.print.PrintException"/>
+<fullyQualifiedTypeName name="com.ironyard.pgf.stack.HelloWorld"/>
+<fullyQualifiedTypeName name="com.ironyard.pgf.stack.MyChild"/>
+<fullyQualifiedTypeName name="java.nio.file.Path"/>
+<fullyQualifiedTypeName name="java.nio.file.Files"/>
+<fullyQualifiedTypeName name="java.nio.file.Paths"/>
+<fullyQualifiedTypeName name="java.nio.charset.StandardCharsets"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.io.FileReader"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.io.FileWriter"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="com.ironyard.pgf.stack.MyFileSort"/>
+<fullyQualifiedTypeName name="java.io.PrintStream"/>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="com.ironyard.pgf.stack.UpperWriter"/>
+<fullyQualifiedTypeName name="com.ironyard.pgf.stack.LowerWriter"/>
+<fullyQualifiedTypeName name="org.eclipse.jetty.server.Server"/>
+<fullyQualifiedTypeName name="org.eclipse.jetty.server.handler.AbstractHandler"/>
+<fullyQualifiedTypeName name="com.ironyard.pgf.hellojetty.HelloHandler"/>
+<fullyQualifiedTypeName name="org.eclipse.jetty.server.handler.HandlerList"/>
+<fullyQualifiedTypeName name="org.eclipse.jetty.server.handler.ResourceHandler"/>
+<fullyQualifiedTypeName name="org.eclipse.jetty.util.resource.Resource"/>
+<fullyQualifiedTypeName name="org.eclipse.jetty.server.Handler"/>
+<fullyQualifiedTypeName name="org.eclipse.jetty.server.handler.DefaultHandler"/>
 </qualifiedTypeNameHistroy>

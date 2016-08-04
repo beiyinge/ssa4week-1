@@ -26,6 +26,19 @@
     "javaRuntime": true
   },
   {
+    "symbolicName": "javax.servlet-api",
+    "version": {
+      "major": 3,
+      "minor": 1,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "27d726d9c07f14d50655c5ea019858aa195924cf",
+    "jarFileModificationDate": "2016-08-04T16:21:08.235-04:00",
+    "location": "C:\\Users\\admin\\ssa4week\\workspace\\HelloJetty\\lib\\jetty-all-9.3.11.M0-uber.jar",
+    "javaRuntime": false
+  },
+  {
     "symbolicName": "jre",
     "version": {
       "major": 1,

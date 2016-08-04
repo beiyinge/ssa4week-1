@@ -1,0 +1,93 @@
+package com.ironyard.pgf.stack;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class MyFileSort {
+	private File inputFile;
+	private SortWriterInt sortWriter;
+
+	public MyFileSort(File inputFile, SortWriterInt sortWriter) {
+		this.inputFile = inputFile;
+		this.sortWriter = sortWriter;
+	}
+	
+	public void sort() throws IOException {
+		FileReader fr = null;
+		try {
+			fr = new FileReader(inputFile);
+			BufferedReader br = new BufferedReader(fr);
+			List<String> lines = new ArrayList<String>();
+			String line;
+			while((line = br.readLine()) != null) {
+				lines.add(line);
+			}
+			Collections.sort(lines, String.CASE_INSENSITIVE_ORDER);
+			for(String tmpStr : lines) {
+				sortWriter.write(tmpStr);
+			}
+		}
+		finally {
+			if(fr != null) {
+				try {
+					fr.close();
+				} catch (IOException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(sortWriter != null) {
+				sortWriter.close();
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		if(args.length < 2) {
+			System.err.println("usage: MyFileSort <input file> <output file>");
+			return;
+		}
+		UpperWriter upperWriter = new UpperWriter(new File(args[1]));
+		MyFileSort myFileSort = new MyFileSort(new File(args[0]), 
+												upperWriter);
+		
+		try {
+			myFileSort.sort();
+		} catch (IOException e) {
+			e.printStackTrace(System.err);
+		}
+	}
+}
+
+interface SortWriterInt {
+	public void write(String s) throws IOException;
+	public void close() throws IOException;
+}
+
+class UpperWriter implements SortWriterInt {
+	PrintStream fw = null;
+	
+	public UpperWriter(File outputFile) throws FileNotFoundException {
+		fw = new PrintStream(outputFile);
+	}
+
+	@Override
+	public void write(String s) throws IOException {
+		fw.println(s.toUpperCase());		
+	}
+
+	@Override
+	public void close() throws IOException {
+		if(fw != null) {
+			fw.close();
+		}
+	}
+}

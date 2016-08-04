@@ -1,0 +1,14 @@
+package com.ironyard.pgf.hellojetty;
+
+public class HelloJetty {
+
+	public HelloJetty() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

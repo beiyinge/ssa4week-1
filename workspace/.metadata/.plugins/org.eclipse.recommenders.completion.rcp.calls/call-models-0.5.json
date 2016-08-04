@@ -8,5 +8,10 @@
     "location": "C:\\Users\\admin\\ssa4week\\workspace\\Stack\\src",
     "status": "UNRESOLVED",
     "error": "No class path info available for \u0027C:\\Users\\admin\\ssa4week\\workspace\\Stack\\src\u0027. Skipped."
+  },
+  "C:\\Users\\admin\\ssa4week\\workspace\\HelloJetty\\lib\\jetty-all-9.3.11.M0-uber.jar": {
+    "location": "C:\\Users\\admin\\ssa4week\\workspace\\HelloJetty\\lib\\jetty-all-9.3.11.M0-uber.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027C:\\Users\\admin\\ssa4week\\workspace\\HelloJetty\\lib\\jetty-all-9.3.11.M0-uber.jar\u0027. Neither fingerprint \u002727d726d9c07f14d50655c5ea019858aa195924cf\u0027 nor symbolic name \u0027javax.servlet-api\u0027 are known."
   }
 }

@@ -3,9 +3,7 @@ package com.ironyard.pgf.stack;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -14,16 +12,21 @@ import java.util.List;
 
 public class MyFileSort {
 	private File inputFile;
-	private File outputFile;
+	private SortWriterInt sortWriter;
 
-	public MyFileSort(File inputFile, File outputFile) {
+	/**
+	 * Sorts the input file into the resource associated with the interface SortWriterInt.
+	 * 
+	 * @param inputFile
+	 * @param sortWriter
+	 */
+	public MyFileSort(File inputFile, SortWriterInt sortWriter) {
 		this.inputFile = inputFile;
-		this.outputFile = outputFile;
+		this.sortWriter = sortWriter;
 	}
 	
 	public void sort() throws IOException {
 		FileReader fr = null;
-		PrintStream fw = null;
 		try {
 			fr = new FileReader(inputFile);
 			BufferedReader br = new BufferedReader(fr);
@@ -33,9 +36,8 @@ public class MyFileSort {
 				lines.add(line);
 			}
 			Collections.sort(lines, String.CASE_INSENSITIVE_ORDER);
-			fw = new PrintStream(outputFile);
 			for(String tmpStr : lines) {
-				fw.println(tmpStr);
+				sortWriter.write(tmpStr);
 			}
 		}
 		finally {
@@ -46,8 +48,8 @@ public class MyFileSort {
 					e.printStackTrace(System.err);
 				}
 			}
-			if(fw != null) {
-				fw.close();
+			if(sortWriter != null) {
+				sortWriter.close();
 			}
 		}
 	}
@@ -57,14 +59,89 @@ public class MyFileSort {
 			System.err.println("usage: MyFileSort <input file> <output file>");
 			return;
 		}
-		MyFileSort myFileSort = new MyFileSort(new File(args[0]), 
-									new File(args[1]));
-		
 		try {
+			SortWriterInt upperWriter = new UpperWriter(new File(args[1]));
+			MyFileSort myFileSort = new MyFileSort(new File(args[0]), 
+					upperWriter);
+			myFileSort.sort();
+			
+			// Just an example of a different implementation using the same interface.
+			SortWriterInt lowerWriter = new LowerWriter(new File("lower_" + args[1]));
+			myFileSort = new MyFileSort(new File(args[0]), 
+					lowerWriter);
 			myFileSort.sort();
 		} catch (IOException e) {
-			e.printStackTrace(System.err);
+			e.printStackTrace();
 		}
 	}
-
 }
+
+/**
+ * Writes text in a certain format to some resource.
+ * @author admin
+ *
+ */
+interface SortWriterInt {
+	/**
+	 * Takes any string from a resource.
+	 * @param s
+	 * @throws IOException
+	 */
+	public void write(String s) throws IOException;
+	/**
+	 * Closes the underlying resource.
+	 * @throws IOException
+	 */
+	public void close() throws IOException;
+}
+
+/**
+ * Write uppercase text to output file.
+ * @author admin
+ *
+ */
+class UpperWriter implements SortWriterInt {
+	PrintStream fw = null;
+	
+	public UpperWriter(File outputFile) throws FileNotFoundException {
+		fw = new PrintStream(outputFile);
+	}
+
+	@Override
+	public void write(String s) throws IOException {
+		fw.println(s.toUpperCase());		
+	}
+
+	@Override
+	public void close() throws IOException {
+		if(fw != null) {
+			fw.close();
+		}
+	}
+}
+
+/**
+ * Writes lower case text to resource file.
+ * @author admin
+ *
+ */
+class LowerWriter implements SortWriterInt {
+	PrintStream fw = null;
+	
+	public LowerWriter(File outputFile) throws FileNotFoundException {
+		fw = new PrintStream(outputFile);
+	}
+
+	@Override
+	public void write(String s) throws IOException {
+		fw.println(s.toLowerCase());		
+	}
+
+	@Override
+	public void close() throws IOException {
+		if(fw != null) {
+			fw.close();
+		}
+	}
+}
+

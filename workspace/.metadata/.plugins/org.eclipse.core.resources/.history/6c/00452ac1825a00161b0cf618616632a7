@@ -1,0 +1,22 @@
+package com.ironyard.pgf.hellojetty;
+
+import org.eclipse.jetty.server.Server;
+
+public class HelloJetty {
+
+	public HelloJetty(int port) throws Exception {
+        Server server = new Server(port);
+        server.start();
+        server.join();		
+	}
+
+	public static void main(String[] args) {
+		try {
+			HelloJetty helloJetty = new HelloJetty(8080);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
