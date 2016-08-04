@@ -1,0 +1,10 @@
+package com.ironyard.pgf.stack;
+
+public class LinkedStack {
+	
+	public LinkedStack() {
+		// TODO Auto-generated constructor stub
+	}
+	
+
+}

@@ -1,0 +1,58 @@
+package com.ironyard.pgf.stack;
+
+import java.util.EmptyStackException;
+
+public class LinkedStack {
+	LinkedValue head = null;
+	
+	public void push(int value) {
+		if(head == null) {
+			head = new LinkedValue(value);
+		}
+		else {
+			LinkedValue newHead = new LinkedValue(value);
+			newHead.next = head;
+			head.prev = newHead;
+			head = newHead;
+		}
+	}
+	
+	public int pop() {
+		if(head == null) {
+			throw new EmptyStackException();
+		}
+		int rtnVal = head.value;
+		head = head.next;
+		if(head != null) {
+			head.prev = null;
+		}
+		
+		return(rtnVal);
+	}
+	
+	public void displayInternalStack() {
+		LinkedValue tmpHead = head;
+		System.out.print("[");
+		do {
+			System.out.print(" " + tmpHead.value + ",");
+			tmpHead = tmpHead.next;
+		}
+		while(tmpHead != null);
+		System.out.println("]");
+	}
+	
+	public static void main(String[] args) {
+		LinkedStack linkedStack = new LinkedStack();
+		for(int i = 0; i < args.length; i++) {
+			linkedStack.push(Integer.parseInt(args[i]));
+			System.out.println("pushing value " + args[i]);
+			linkedStack.displayInternalStack();
+		}
+		// pop them off the stack
+		for(int i = 0; i < args.length; i++) {
+			System.out.println("popping value " + linkedStack.pop());
+			linkedStack.displayInternalStack();
+		}
+	}
+
+}

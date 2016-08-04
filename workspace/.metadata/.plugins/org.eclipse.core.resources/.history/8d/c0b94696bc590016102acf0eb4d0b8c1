@@ -1,0 +1,38 @@
+package com.ironyard.pgf.stack;
+
+import java.util.EmptyStackException;
+
+public class MyStack {
+	private int[] stackArr = new int[0];
+	
+	public void push(int value) {
+		int[] tmpArr = new int[(stackArr.length + 1)];
+		for(int i = 0; i < tmpArr.length; i++) {
+			tmpArr[i] = stackArr[i];
+		}
+		tmpArr[stackArr.length] = value;
+		stackArr = tmpArr;
+	}
+	
+	public int pop() throws EmptyStackException {
+		if(stackArr.length == 0) {
+			throw(new EmptyStackException());
+		}
+		int rtnValue = stackArr[(stackArr.length-1)];
+		int[] tmpArr = new int[stackArr.length];
+		for(int i = 0; i < tmpArr.length; i++) {
+			tmpArr[i] = stackArr[i];
+		}
+		return rtnValue;
+	}
+
+	public MyStack() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

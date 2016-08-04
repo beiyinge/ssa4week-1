@@ -1,0 +1,11 @@
+package com.ironyard.pgf.stack;
+
+public class LinkedValue {
+	private LinkedValue prev = null;
+	private LinkedValue next = null;
+
+	public LinkedValue(value, linkedValue prev, linkedValue next) {
+		
+	}
+
+}

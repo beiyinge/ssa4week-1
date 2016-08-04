@@ -1,0 +1,18 @@
+package com.ironyard.pgf.stack;
+
+public class LinkedStack {
+	LinkedValue head = null;
+	
+	public void push(int value) {
+		if(head == null) {
+			head = new LinkedValue(value);
+			
+		}
+	}
+	
+	public int pop() {
+		int rtnVal;
+		
+		return(rtnVal);
+	}
+}

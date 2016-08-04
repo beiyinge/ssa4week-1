@@ -1,0 +1,9 @@
+package com.ironyard.pgf.stack;
+
+public class LinkedValue {
+
+	public LinkedValue() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
