@@ -49,3 +49,18 @@ exports.getuserinfo = function (req, res) {
             console.log('db error = ' + err);
         }
     );}
+
+    exports.getfollowers = function (req, res) {
+    console.log('getfollowers');
+    console.log('path=' + req);
+    var parts = req.path.split('/');
+    var userid = parts[3];
+
+    db.getFollowersJSON(userid).then(
+        (usersJSON) => {
+            res.send(usersJSON);
+        }).catch((err) => {
+            console.log('db error = ' + err);
+        }
+    );   
+}

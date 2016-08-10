@@ -214,6 +214,31 @@ function getUserInfoJSON(userId) {
         });
     });
 }
+
+exports.getFollowersJSON = getFollowersJSON;
+function getFollowersJSON(userId) {
+    return new Promise((resolve, reject) => {
+        console.log('getUserInfo');
+        var db = new sqlite3.Database('scratch.db');
+        var query = "SELECT FOLLOWERID FROM FOLLOWER "
+            + "  WHERE USERID = '" + userId + "'";
+        var followers = [];
+        db.each(query,
+            function(err, row) {
+                var user = { userId: userId };
+                followers.push(user);
+            },
+            function(err) {
+                if(err) {
+                    reject(err);
+                }
+                else {
+                    db.close();
+                    resolve(JSON.stringify(followers));
+                }
+        });
+    });
+}
 /*
 initdb();
 var db = new sqlite3.Database('scratch.db');

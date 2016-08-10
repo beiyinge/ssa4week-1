@@ -1,7 +1,7 @@
 function getFollowers() {
 	//var followers = [{userID:'ABC'},{userID:'QWE'},{userID:'DFG'},{userID:'zxcvb'},{userID:'r64saa'}];
 	
-	ajaxHandler("Rest/followers/", function (followers) {
+	ajaxHandler("rest/followers/" + GetCookie(), function (followers) {
 
 		var followerDiv = document.getElementById("followerlist");
 		var htmlStr = "";

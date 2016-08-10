@@ -31,6 +31,7 @@ app.get('/rest/sendtweet', rest.sendtweet);
 app.get('/rest/tweets/*', rest.gettweets);
 app.get('/rest/followedtweets/*', rest.getfollowedtweets);
 app.get('/rest/userinfo/*', rest.getuserinfo);
+app.get('/rest/followers/*', rest.getfollowers);
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
