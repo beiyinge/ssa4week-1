@@ -1,0 +1,33 @@
+<html ng-app="todoApp">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Angular.js ToDo Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    <script>
+      var todoApp = angular.module('todoApp', []);
+      todoApp.controller('TodoCtrl',['$scope', 
+        function (scope){
+        // Initialize the todo list array
+        scope.todoList = [];
+ 
+      // Handle the key press
+      scope.addItem = function(event) {
+          if(event.keyCode === 13) {
+            scope.todoList.push(scope.todoItem);
+            scope.todoItem = "";
+          }
+      }
+    }]
+ );
+    </script>
+</head>
+
+<body ng-controller="TodoCtrl">
+    Add a ToDo Item: <input ng-model="todoItem" type="text" ng-keypress="addItem($event)" />
+    <!-- Use "track by $index" because otherwise you will get an error on duplicate entries. -->
+    <li ng-repeat="item in todoList track by $index">{{item}}</li>
+</body>
+
+</html>
