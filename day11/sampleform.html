@@ -1,0 +1,34 @@
+<html ng-app="formApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>Angular.js Form Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <script>
+    var app = angular.module('formApp', []);
+    app.controller('validateCtrl', function($scope) {
+        // function to call on form submit       
+        $scope.submitForm = function(isValid) {
+        // check all goes fine?
+        if (isValid) {
+            alert('You are done to understand angularjs form validation');
+        }
+        };
+    });
+    </script>
+</head>
+<body>
+    <form ng-app="formApp" ng-controller="validateCtrl" name="SampleForm" ng-submit="submitForm(SampleForm.$valid)">
+    Name: <input type="TEXT" name="name" ng-model="name" ng-model-options="updateOn: 'blur'"/><BR>
+    <span style="color:red" ng-show="SampleForm.name.$dirty && SampleForm.name.$invalid">
+    <span ng-show="SampleForm.name.$error.required">Name is required.</span>
+    </span>
+    <!--
+    Email: <input type="TEXT" name="email" ng-model="email" required="required"/><BR>
+    Website: <input type="TEXT" name="website" ng-model="website"/><BR>
+    Message: <textarea name="message" ng-model="message"></textarea><BR>
+    -->
+    <input type="submit">
+    </form>
+</body>
+</html>

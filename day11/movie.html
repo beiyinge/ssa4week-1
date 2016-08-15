@@ -1,0 +1,39 @@
+<html ng-app="movieApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>Angular.js Movie Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    <script>
+      var todoApp = angular.module('movieApp', []);
+      todoApp.controller('MovieAppCtrl',['$scope', '$http',
+        function (scope, http){
+        // Initialize movie
+        scope.movie = '';
+ 
+      // Handle the key press
+      scope.findMovieDetails = function(event) {
+          if(event.keyCode === 13) {
+              var url = 'http://www.omdbapi.com/?t=' 
+                        + encodeURIComponent(scope.movie) 
+                        + '&y=&plot=short&r=json'
+                http.get(url).success(function(data) {
+                 scope.movieDetail = data;
+                 scope.movie = '';
+            });
+          }
+      }
+    }]
+ );
+    </script>
+</head>
+
+<body ng-controller="MovieAppCtrl">
+    Enter Movie: <input ng-model="movie" type="text" ng-keypress="findMovieDetails($event)" />
+    <li>Title: {{movieDetail.Title}}</li>
+    <li>Year: {{movieDetail.Year}}</li>
+    <li>Released: {{movieDetail.Released}}</li>
+    <li>Runtime: {{movieDetail.Runtime}}</li>
+</body>
+
+</html>

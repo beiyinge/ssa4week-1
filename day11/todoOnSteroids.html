@@ -1,0 +1,64 @@
+<html ng-app="todoApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>Angular.js ToDo Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    <script>
+      var todoApp = angular.module('todoApp', []);
+      todoApp.controller('TodoCtrl', 
+        function ($scope){
+            // Initialize the todo list array
+            $scope.todoList = [];
+            $scope.completed = [];
+
+            // Handle the key press
+            $scope.addItem = function(event) {
+                if(event.keyCode === 13) {
+                    $scope.todoList.push($scope.todoItem);
+                    $scope.todoItem = "";
+                }
+            };
+
+            $scope.removeItem = function(item) {
+                var i = $scope.todoList.indexOf(item);
+                $scope.todoList.splice(i, 1);  
+                // remove from completed
+                i = $scope.completed.indexOf(item);
+                if(i > -1) {
+                     $scope.completed.splice(i, 1);
+                }
+            };
+
+            $scope.toggleSelection = function toggleSelection(item) {
+                var idx = $scope.completed.indexOf(item);
+                if (idx > -1) {
+                    $scope.completed.splice(idx, 1);
+                }
+                else {
+                    $scope.completed.push(item);
+                }
+            };
+        });
+    </script>
+</head>
+
+<body ng-controller="TodoCtrl">
+    Add a ToDo Item: <input ng-model="todoItem" type="text" ng-keypress="addItem($event)" />
+    <!-- Use "track by $index" because otherwise you will get an error on duplicate entries. -->
+    <table border="0">
+        <tr ng-repeat="item in todoList track by $index">
+            <td><input type="checkbox"type="checkbox"
+                    name="completed[]"
+                    value="{{item}}"
+                    ng-checked="selection.indexOf(item) > -1"
+                    ng-click="toggleSelection(item)"</td>
+                <td>{{item}}</td>
+                <td><a href="" ng-click="removeItem(item)">Remove</a>
+        </tr>
+    </table>
+    <p>Completed</p>
+    <li ng-repeat="item in completed track by $index">{{item}}</li>
+</body>
+
+</html>
