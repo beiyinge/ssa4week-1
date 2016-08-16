@@ -1,0 +1,23 @@
+<H1>Product Details</H1>
+<table border="1">
+<tr>
+    <td>Name</td>
+    <td>Description</td>
+    <td>Category</td>
+    <td>Price</td>
+    <td>Cart</td>
+   <td>Reviews</td>
+</tr>
+<tr valign="top">
+    <td>{{ product.name }}</td>
+    <td>{{ product.description }}</td>
+    <td>{{ product.category }}</td>
+    <td>{{ product.price | currency }}</td>
+    <td><button type="button" id="addButton" ng-click="addItem($product.sku)">Add</button></td>
+    <td>
+        <ul>
+            <li ng-repeat="review in product.reviews">{{ review }}</li>
+        </ul>
+    </td>
+</tr>
+</table>

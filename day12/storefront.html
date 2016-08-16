@@ -1,0 +1,184 @@
+<html ng-app="storeApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular.js Example</title>
+    <style>
+        .mainbody
+        {
+            min-height: 250px;
+            width: 100%;
+        }
+        .header
+        {
+            height: 40px;
+            width: 100%;
+            border-bottom: #000 1px solid;
+
+        }
+       .footer
+        {
+            height: 40px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            border-top: #000 1px solid;       
+        }​
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.min.js"></script>
+    <script>
+      var data = [
+  {
+    "sku": "11110",
+    "name": "Nike Running Shoes",
+    "description": "Nike brand running shoes",
+    "category": "Shoes",
+    "price": 59.00,
+    "reviews": [ "These are great running shoes.",  "They fell apart after 10 runs."]
+  },
+  {
+    "sku": "11111",
+    "name": "Nike Walking Shoes",
+    "description": "Nike brand walking shoes",
+    "category": "Shoes",
+    "price": 49.00,
+    "reviews": [ "Terrible to walk in.", "Not sure they were worth the price.", "ok"]
+  },
+ {
+    "sku": "11112",
+    "name": "Nike T-Shirt",
+    "description": "Nike brand running T-Shirts",
+    "category": "Shirts",
+    "price": 36.00,
+    "reviews": [ "What can I say?  It's T-Shirt."]
+  },
+{
+    "sku": "11113",
+    "name": "Nike Workout Top",
+    "description": "Nike brand workout top",
+    "category": "Shirts",
+    "price": 40.00,
+    "reviews": []
+  },
+ {
+    "sku": "11114",
+    "name": "Nike Headband",
+    "description": "Nike brand headband",
+    "category": "Accessories",
+    "price": 10.00,
+    "reviews": [ "Bring back the 70's!!"]
+  },
+];
+      var cart = [];
+      
+      var storeApp = angular.module('storeApp', ['ngRoute']);
+
+      storeApp.controller('storeAppController', function($scope, items) {
+        $scope.addItem = function(sku) {
+          items.find(sku, function(product) {
+            cart.push(product);
+          });        
+        };
+      });
+
+      storeApp.config(function($routeProvider) {
+        $routeProvider.
+          when('/', {
+            templateUrl: 'storehome.html',
+            controller: 'HomeCtrl'
+          }).
+          when('/sku/:sku', {
+            templateUrl: 'storedetail.html',
+            controller: 'StoreDetailCtrl'
+          }).
+          when('/categories', {
+            templateUrl: 'storecategories.html',
+            controller: 'StoreCategories'
+          }).
+          when('/list/:category', {
+            templateUrl: 'storebrowse.html',
+            controller: 'StoreBrowseByCategory'
+          }).
+          when('/browse', {
+            templateUrl: 'storebrowse.html',
+            controller: 'StoreBrowse'
+          }).
+           when('/cart', {
+            templateUrl: 'storecart.html',
+            controller: 'StoreCart'
+          }).
+         otherwise({
+            redirectTo: '/'
+          });
+      });
+
+      storeApp.factory('items', function(){
+        return {
+          list: function(callback){
+            callback(data);
+          },
+          categoryList: function(category, callback) {
+            var products = data.filter(function(entry) {
+              return entry.category === category;
+            });
+            callback(products);
+          },
+          find: function(sku, callback){
+            var product = data.filter(function(entry) {
+              return entry.sku === sku;
+            })[0];
+            callback(product);
+          }
+        };
+      });
+
+      storeApp.controller('HomeCtrl', function ($scope) {
+          $scope.products = data;
+      });
+
+      storeApp.controller('StoreCategories', function($scope) {
+        var categorySet = new Set();
+        for(var i = 0; i < data.length; i++) {
+          categorySet.add(data[i].category);
+        }
+        $scope.categories = Array.from(categorySet);
+      });
+
+      storeApp.controller('StoreBrowse', function($scope, items) {
+        items.list(function(products) {
+          $scope.products = products;
+        })
+      });
+
+      storeApp.controller('StoreBrowseByCategory', function($scope, $routeParams, items) {
+        items.categoryList($routeParams.category, function(products) {
+          $scope.products = products;
+        })
+      });
+      
+      storeApp.controller('StoreCart', function($scope, $routeParams) {
+        $scope.cart = cart;
+        var total = 0;
+        for(var i = 0; i < cart.length; i++) {
+          total += cart[i].price;
+        }
+        $scope.total = total;
+      });
+      
+      storeApp.controller('StoreDetailCtrl', function ($scope, $routeParams, items){
+        items.find($routeParams.sku, function(product) {
+          $scope.product = product;
+        });
+      });
+    </script>
+  </head>
+  <body ng-controller="storeAppController">
+    <div id="nav" class="header"><a ng-href="#/">Home</a> 
+    <a ng-href="#/browse">Browse</a>
+    <a ng-href="#/categories">Categories</a> 
+    <a ng-href="#/cart">Cart</a>
+    </div>
+    <div class="mainbody" ng-view></div>
+    <div id="footer" class="footer"><center>Nike Satellite Store</center></div>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+Your Mission
+
+Create a new site (HTML and JavaScript, no need to style it, although you may feel compelled to :wink: ) which represents an online shop. (If you want to use your existing shop application that is fine, or you can create a new application.) Your site must have one primary HTML document and separate partial views for the various states.
+
+Pages we can navigate to:
+
+   home page: (title, basic nav, shop tagline, search box, and the featured item of the week)
+       the basic nav should allow me to go to the home page, item category list, or shopping cart)
+   item category list (title, basic nav, list of categories)
+   category item list (title, basic nav, list of items in that category)
+   item search results (title, basic nav, list of items)
+   item detail page (title, basic nav, item detail info, similar items within that item's category)
+   user shopping cart (title, basic nav, current cart items, featured item of the week)
+
+All pages should have a footer as well with a basic copyright notice. Any time we render an item (outside of the item detail view) it should look the same and we can perform the same actions! From an item partial view (like in a list) we can:
+
+   see basic item info (image, name, cost)
+   click the item name to view the item in more detail (unless we're already on the item detail page)
+   click a button to add the item to our cart (stays on current page)
+
+You must use nested views for this assignment. And don't forget your default route!
+Data
+
+Don't worry about real data or the actual checkout process. For now just use some static data defined in the controllers (or in a service if you want to separate things out a bit more). You can make up whatever data properties you like on the items and categories. (Don't get hung up on this!)
+EPIC Mode
+
+   Use a service for the items and the user's cart (either fake the actions or use localStorage)

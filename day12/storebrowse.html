@@ -1,0 +1,17 @@
+<H1>Browse Products</H1>
+<table border="1">
+<tr>
+    <td>Name</td>
+    <td>Description</td>
+    <td>Category</td>
+    <td>Price</td>
+    <td>Cart</td>
+</tr>
+<tr ng-repeat="product in products">
+    <td><a ng-href="#/sku/{{ product.sku }}">{{ product.name }}</a></td>
+    <td>{{ product.description }}</td>
+    <td>{{ product.category }}</td>
+    <td>{{ product.price | currency }}</td>
+    <td><button type="button" id="addButton" ng-click="addItem(product.sku)">Add</button></td>
+</tr>
+</table>
